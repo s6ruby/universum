@@ -15,7 +15,7 @@ Where's the consenus to make bitcoin better?
 Insane / lunatic proof-of-work mining difficulty. Centralized mining pools.
  And on and on. New currencies will take over. 
 Thanks to bitcoin for showing what's possible. 
-The bitcoin show is over. Old gold bugs HODLing old "fossilized" tech. 
+The bitcoin show is over. Old gold bugs HODLing old "fossilized" tech waiting for a get-rich / too the moon miracle. 
 
 
 
