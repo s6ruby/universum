@@ -84,7 +84,7 @@ Join in. Version 0.1 (code-named Big Bang) upcoming.
 
 ---
 
-## Apendix
+## Appendix
 
 Token Contract Sample Script - [`tokens/token_test.rb`](https://github.com/openblockchains/universe/blob/master/tokens/token_test.rb):
 
@@ -139,7 +139,6 @@ class TestToken < Minitest::Test
 
     
     Contract.msg = { sender: '0x0000' }  ## change sender back to 0x0000
-    pp Contract.msg
 
     assert @token.transfer( to: '0x1111', value: 1 )
     assert_equal 99_999_999_999_969, @token.balance_of( owner: '0x0000' )
