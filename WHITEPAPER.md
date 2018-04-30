@@ -70,4 +70,4 @@ To summarize:
 - **NO** Proprietary "World" (Blockchain) Database / Storage => Use SQL Databases
 
 
-Join in. Version 0.1 (code-Named Big Bang) upcoming.
+Join in. Version 0.1 (code-named Big Bang) upcoming.
