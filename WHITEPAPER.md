@@ -27,7 +27,7 @@ What's News? What's Great about Ethereum (vs "Ye Olde" Bitcoin)?
   - e.g. Solidity (JavaScript-Like), Vyper (Python-Like), LLL (Lisp-Like), etc.
 - Contracts Own Accounts (& Budgets)
 - Isolated / Protected (Blockchain) Storage for Contracts
-- and more
+- And more
 
 
 ## 2018 - Universum 
@@ -44,8 +44,7 @@ Not-Invented-Here, Not-Invented-Here, Not-Invented-Here Syndrome:
 
 Why not use the world's best and most popular programming languages for your contract / transaction scripts?
 
-Universum will start with standard plain vanilla Ruby as an example on how to use a popular general-purpose programming language 
-for "turing-complete" (blockchain) contract programming.   
+Universum will start with 25-year-old standard plain vanilla ruby as an example on how to use a popular general-purpose programming language for "turing-complete" (blockchain) contract programming.   
 
 And the "virtual machine" is the standard language runtime itself.
 
