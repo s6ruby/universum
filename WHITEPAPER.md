@@ -46,7 +46,7 @@ What's Wrong with Ethereum?
 Not-Invented-Here, Not-Invented-Here, Not-Invented-Here Syndrome:
 
 - Proprietary Contract Programming Language
-- Proprietary Virtual Machine (& Byte Code Instructions)
+- Proprietary Virtual Machine (& Bytecode Instructions)
 - Proprietary "World State" Transition
 - Proprietary "World" Database / Storage
 
@@ -81,7 +81,12 @@ To summarize:
 Join in. Version 0.1 (code-named Big Bang) upcoming.
 
 
-Token Contract Sample Script:
+
+---
+
+## Apendix
+
+Token Contract Sample Script - [`tokens/token_test.rb`](https://github.com/openblockchains/universe/blob/master/tokens/token_test.rb):
 
 ``` ruby
 # To test the contract script run:
@@ -117,9 +122,7 @@ class TestToken < Minitest::Test
   end
 
 
-  def test_transfer_from
-
-    
+  def test_transfer_from 
     assert !@token.transfer_from( from: '0x1111', to: '03333', value: 30 ) ## note: NOT pre-approved - will FAIL
     assert_equal 0, @token.allowance( owner: '0x0000', spender: '0x1111' )
 
@@ -145,5 +148,3 @@ class TestToken < Minitest::Test
 
 end # class TestToken
 ```
-
-(Source: [`tokens/token_test.rb`](https://github.com/openblockchains/universe/blob/master/tokens/token_test.rb))
