@@ -1,3 +1,7 @@
+New to Universum? See the [Universum (World Computer) White Paper](https://github.com/openblockchains/universum/blob/master/WHITEPAPER.md)!
+
+
+
 # Universum (Ruby Edition)
 
 next generation ethereum 2.0 world computer runtime - run contract scripts / transactions in plain vanilla / standard ruby on the blockchain - update the (contract-protected / isolated) world states with plain vanilla / standard SQL
