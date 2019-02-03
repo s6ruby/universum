@@ -280,6 +280,12 @@ end  # class Block
 
 
 class Transaction
+
+  def self.send( **kwargs )  ## convenience helper for Uni.send_transaction
+    Universum.send_transaction( **kwargs )
+  end
+
+
   attr_reader :from, :to, :value, :data, :nonce
 
   def initialize( from:, to:, value:, data:, nonce: nil )

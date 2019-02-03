@@ -87,13 +87,13 @@ require_relative 'greeter'
 
 Account['0x1111']    ## setup a test account
 
-tx = Uni.send_transaction( from: '0x1111', data: [Greeter, 'Hello World!'] )
+tx = Tx.send( from: '0x1111', data: [Greeter, 'Hello World!'] )
 greeter = tx.receipt.contract
 
 puts greeter.greet
 #=> Hello World!
 
-tx = Uni.send_transaction( from: '0x1111', data: [Greeter, '¡Hola, mundo!'] )
+tx = Tx.send( from: '0x1111', data: [Greeter, '¡Hola, mundo!'] )
 greeter_es = Receipt[ tx ].contract
 
 puts greeter_es.greet

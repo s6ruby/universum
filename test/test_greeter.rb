@@ -13,7 +13,7 @@ require 'contracts/greeter'    ## use require_relative - why? why not?
 
 class TestGreeter < MiniTest::Test
 
-def test_run
+def test_uni
    account = Account['0x1111']
 
    tx = Uni.send_transaction( from: '0x1111', data: [Greeter, 'Hello World!'] )
@@ -34,5 +34,28 @@ def test_run
    assert 'Hello World!',   greeter.greet
    assert '¡Hola, mundo!',  greeter_es.greet
 end
+
+def test_tx
+   account = Account['0x1111']
+
+   tx = Tx.send( from: '0x1111', data: [Greeter, 'Hello World!'] )
+   pp tx
+   pp tx.receipt
+
+   greeter = tx.receipt.contract
+
+   assert 'Hello World!', greeter.greet
+   assert 'Hello World!', greeter.greet
+
+   tx = Tx.send( from: '0x1111', data: [Greeter, '¡Hola, mundo!'] )
+
+   greeter_es = Receipt[ tx ].contract
+
+   assert '¡Hola, mundo!', greeter_es.greet
+
+   assert 'Hello World!',   greeter.greet
+   assert '¡Hola, mundo!',  greeter_es.greet
+end
+
 
 end # class TestGreeter
