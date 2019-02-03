@@ -108,6 +108,63 @@ puts greeter_es.greet
 
 
 
+### The Coin - Minimum Viable Token
+
+What's next? Let's use the ["Create your own crypto-currency"](https://www.ethereum.org/token) example from Ethereum
+to compare contracts in Solidity with contracts in Ruby again:
+
+``` solidity
+pragma solidity >=0.4.22 <0.6.0;
+
+contract MyToken {
+    /* This creates an array with all balances */
+    mapping (address => uint256) public balanceOf;
+
+    /* Initializes contract with initial supply tokens to the creator of the contract */
+    constructor(
+        uint256 initialSupply
+        ) public {
+        balanceOf[msg.sender] = initialSupply;              // Give the creator all initial tokens
+    }
+
+    /* Send coins */
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(balanceOf[msg.sender] >= _value);           // Check if the sender has enough
+        require(balanceOf[_to] + _value >= balanceOf[_to]); // Check for overflows
+        balanceOf[msg.sender] -= _value;                    // Subtract from the sender
+        balanceOf[_to] += _value;                           // Add the same to the recipient
+        return true;
+    }
+}
+```
+
+and
+
+``` ruby
+class MyToken < Contract
+
+  def initialize( initial_supply )
+    @balance_of = Mapping.of( Address => Money )
+    @balance_of[ msg.sender] = initial_supply
+  end
+
+  def transfer( to, value )
+    assert( @balance_of[ msg.sender ] >= value )
+    assert( @balance_of[ to ] + value >= @balance_of[ to ] )
+
+    @balance_of[ msg.sender ] -= value
+    @balance_of[ to ]         += value
+
+    return true
+  end
+end   # class MyToken
+```
+
+(Source: [`contracts/mytoken.rb`](test/contracts/mytoken.rb))
+
+
+
+
 ## More Contract Samples
 
 See the [`/universum-contracts`](https://github.com/openblockchains/universum-contracts) collection.
