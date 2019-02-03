@@ -7,6 +7,11 @@ New to Universum? See the [Universum (World Computer) White Paper](https://githu
 next generation ethereum 2.0 world computer runtime - run contract scripts / transactions in plain vanilla / standard ruby on the blockchain - update the (contract-protected / isolated) world states with plain vanilla / standard SQL
 
 
+* home  :: [github.com/openblockchains/universum](https://github.com/openblockchains/universum)
+* bugs  :: [github.com/openblockchains/universum/issues](https://github.com/openblockchains/universum/issues)
+* gem   :: [rubygems.org/gems/universum](https://rubygems.org/gems/universum)
+* rdoc  :: [rubydoc.info/gems/universum](http://rubydoc.info/gems/universum)
+
 
 ## Usage
 
@@ -100,6 +105,18 @@ puts greeter_es.greet
 #=> ¡Hola, mundo!
 ...
 ```
+
+
+
+## More Contract Samples
+
+See the [`/universum-contracts`](https://github.com/openblockchains/universum-contracts) collection.
+
+
+## More Documentation / Articles / Contracts
+
+[Programming Crypto Blockchain Contracts Step-by-Step Book / Guide](https://github.com/openblockchains/programming-cryptocontracts) - Let's Start with Ponzi & Pyramid Schemes. Run Your Own Lotteries, Gambling Casinos and more on the Blockchain World Computer...
+
 
 
 ## Install
