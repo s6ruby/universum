@@ -1,6 +1,11 @@
-HISTORY.md
+CHANGELOG.md
 Manifest.txt
 README.md
 Rakefile
 lib/universum.rb
+lib/universum/universum.rb
 lib/universum/version.rb
+test/contracts/greeter.rb
+test/helper.rb
+test/test_greeter.rb
+test/test_version.rb

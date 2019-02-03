@@ -1,11 +1,14 @@
 # encoding: utf-8
 
 
-module Universum
+##
+## note: Universum is a class (and NOT a module for now)
+
+class Universum
 
   MAJOR = 0
-  MINOR = 0
-  PATCH = 1
+  MINOR = 1
+  PATCH = 0
   VERSION = [MAJOR,MINOR,PATCH].join('.')
 
   def self.version

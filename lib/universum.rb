@@ -1,11 +1,10 @@
 # encoding: utf-8
 
-require 'pp'
-
 
 ## our own code
 require 'universum/version'    # note: let version always go first
 
+require 'universum/universum'
 
-pp Universum.banner
-pp Universum.root
+
+puts Universum.banner   ## say hello
