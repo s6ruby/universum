@@ -1,4 +1,4 @@
-_Ruby for Contract / Transaction Scripts on the Blockchain_
+_Ruby for Contract / Transaction Scripts on the Blockchain (World Computer)_
 
 # sruby - Simple, Secure & Solid Ruby
 
