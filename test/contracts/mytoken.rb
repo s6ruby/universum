@@ -15,6 +15,6 @@ class MyToken < Contract
     @balance_of[ msg.sender ] -= value
     @balance_of[ to ]         += value
 
-    return true
+    true
   end
 end   # class MyToken
