@@ -1,5 +1,4 @@
-Ruby for Contract / Transaction Scripts on the Blockchain
-
+_Ruby for Contract / Transaction Scripts on the Blockchain_
 
 # sruby - Simple, Secure & Solid Ruby
 
@@ -29,13 +28,11 @@ You can cross-compile (transpile) contract scripts to:
 - EVM (Ethereum Virtual Machine) Assembly
 - and much much more
 
-Again less is more.
-
 
 
 ## Yes, yes, yes - It's still "plain-vanilla" ruby
 
-Rembember - the code is still and always will be "plain-vanilla" ruby
+Remember - the code is still and always will be "plain-vanilla" ruby
 that runs with "classic" ruby or mruby "out-of-the-box".
 
 
