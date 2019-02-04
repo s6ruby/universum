@@ -1,6 +1,6 @@
 _Ruby for Contract / Transaction Scripts on the Blockchain (World Computer)_
 
-# sruby - Simple, Secure & Solid Ruby
+# sruby - Simple, Secure, Safe, Solid & Sound Ruby
 
 sruby is a subset of mruby that is a subset of "classic" ruby.
 
