@@ -8,7 +8,7 @@ sruby is a subset of mruby that is a subset of "classic" ruby.
 ## What's missing and why?
 
 
-Less is more. The golden ruby of secure code is keep it simple, stupid.
+Less is more. The golden rule of secure code is keep it simple, stupid.
 
 - NO inheritance
 - NO recursion
@@ -21,13 +21,15 @@ Less is more. The golden ruby of secure code is keep it simple, stupid.
 
 ## What's the upside?
 
-You can cross-compile (transpile) contract scripts to:
+You can cross-compile (transpile) contract scripts (*) to:
 
 - Solidity - JavaScript-like contract scripts
 - Vyper - Python-like contract scripts
 - EVM (Ethereum Virtual Machine) Assembly
 - and much much more
 
+
+(*) in the future.
 
 
 ## Yes, yes, yes - It's still "plain-vanilla" ruby
