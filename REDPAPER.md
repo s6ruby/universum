@@ -58,7 +58,7 @@ class Greeter < Contract
   def kill
     selfdestruct( msg.sender )  if msg.sender == @owner
   end
-end  # class Greeter
+end
 ```
 
 
@@ -81,7 +81,7 @@ class Token < Contract
 
     true
   end
-end   # class MyToken
+end
 ```
 
 
