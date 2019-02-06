@@ -4,10 +4,14 @@ Manifest.txt
 README.md
 Rakefile
 lib/universum.rb
+lib/universum/enum.rb
+lib/universum/event.rb
 lib/universum/universum.rb
 lib/universum/version.rb
 test/contracts/greeter.rb
 test/contracts/mytoken.rb
 test/helper.rb
+test/test_enum.rb
+test/test_event.rb
 test/test_greeter.rb
 test/test_version.rb

@@ -1,18 +1,38 @@
+# encoding: utf-8
+
+###
+#  to run use
+#     ruby -I ./lib -I ./test test/test_event.rb
 
 
-BetPlaced = Event.new( :id, :user, :cap, :amount )
+require 'helper'
 
-Roll      = Event.new( :id, :rolled )
 
-b = BetPlaced.new( 1, '0xaaaa', 2000, 100 )
-assert       b.is_a? Event
-assert_equal 1         == b.id
-'0xaaaa'  == b.user
-2000      == b.cap
-100       == b.amount
+class TestEvent < MiniTest::Test
 
-r = Roll.new( 1, 2345 )
-assert      r.is_a? Event
-assert_equal 1    == r.id
-assert_equal 2345 == r.rolled
+  BetPlaced = Event.new( :id, :user, :cap, :amount )
+  Roll      = Event.new( :id, :rolled )
 
+
+def test_bet_placed
+  pp BetPlaced
+
+  bet = BetPlaced.new( 1, '0xaaaa', 2000, 100 )
+
+  assert       bet.is_a?( Event )
+  assert_equal 1,        bet.id
+  assert_equal '0xaaaa', bet.user
+  assert_equal 2000,     bet.cap
+  assert_equal 100,      bet.amount
+end
+
+def test_roll
+  pp Roll
+
+  roll = Roll.new( 1, 2345 )
+  assert       roll.is_a?( Event )
+  assert_equal 1,    roll.id
+  assert_equal 2345, roll.rolled
+end
+
+end # class TestEvent

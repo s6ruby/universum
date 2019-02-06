@@ -1,10 +1,6 @@
 # encoding: utf-8
 
 
-## stdlibs
-require 'pp'         ## pretty print (pp)
-require 'digest'
-
 
 def sha256( str )
   Digest::SHA256.hexdigest( str )
@@ -420,37 +416,6 @@ class Receipt   ## transaction receipt
 end
 
 
-## base class for events
-class Event
-  ## return a new Struct-like read-only class
-  def self.build_class( *fields )
-    klass = Class.new( Event ) do
-      define_method( :initialize ) do |*args|
-        fields.zip( args ).each do |field, arg|
-          instance_variable_set( "@#{field}", arg )
-        end
-      end
-
-      fields.each do |field|
-        define_method( field ) do
-          instance_variable_get( "@#{field}" )
-        end
-      end
-    end
-
-    ## add self.new too - note: call/forward to "old" orginal self.new of Event (base) class
-    klass.define_singleton_method( :new ) do |*args|
-      old_new( *args )
-    end
-
-    klass
-  end
-
-  class << self
-    alias_method :old_new, :new       # note: store "old" orginal version of new
-    alias_method :new,     :build_class    # replace original version with create
-  end
-end  # class Event
 
 
 class Universum   ## Uni short for Universum
