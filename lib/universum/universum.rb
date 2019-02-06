@@ -182,7 +182,26 @@ end # class Account
 
 
 class Contract
+ 
+  #########
+  # load "class-less" contract 
+  #   e.g.   SathoshiDice = Contract.load( './sathoshi_dice' )
+  def self.load( path )
+    extname = File.extname( path )   #=> ".rb"
+    if extname == '.rb'
+      ## do nothing
+    else
+      ## "convenience" helper - (auto-)add .rb extension
+      path = "#{path}.rb"
+    end
 
+    code = File.open( path, 'r:bom|utf-8' ) { |f| f.read }
+    klass = Class.new( Contract )
+    klass.class_eval( code )   ## note: use class_eval (NOT instance_eval)
+    klass
+  end
+   
+  
   @@directory = {}
   def self.find_by_address( key )
      ## clean key (allow "embedded" class name e.g 0x4de2ee8 (SatoshiDice))
