@@ -4,6 +4,10 @@
 ## stdlibs
 require 'pp'         ## pretty print (pp)
 require 'digest'
+require 'date'
+require 'time'
+require 'uri'
+
 
 
 ## our own code
