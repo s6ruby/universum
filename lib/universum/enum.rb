@@ -2,39 +2,38 @@
 
 ##################################
 ## auto-create/builds enum class.
-##  Example:
 ##
-##  class Enum; end
-##  class State < Enum
+## Example:
+##   State = Enum.new( :fundraising, :expired_refund, :successful)
+##     auto-creates/builds:
 ##
-##    def self.create
-##      @fundraising    = new(:fundraising,    0)
-##      @expired_refund = new(:expired_refund, 1)
-##      @successful     = new(:successful,     2)
-##    end
-##
-##    def self.fundraising()    @fundraising; end
-##    def self.expired_refund() @expired_refund; end
-##    def self.successful()     @successful; end
-##
-##    def initialize( name, value )
-##      @name  = name
+##  class Enum
+##    def initialize( key, value )
+##      @key   = key
 ##      @value = value
 ##    end
-##
-##    def fundraising?()     self == self.class.fundraising; end
-##    def expired_refund?()  self == self.class.expired_refund; end
-##    def successful?()      self == self.class.successful; end
-##
-##    create ## note: call create
 ##  end
 ##
+##  class State < Enum
 ##
-##  pp state = State.fundraising     #=> #<State @name=:fundraising, @value=0>
+##    FUNDRAISING    = new(:fundraising,    0)
+##    EXPIRED_REFUND = new(:expired_refund, 1)
+##    SUCCESSFUL     = new(:successful,     2)
+##
+##    def self.fundraising()    FUNDRAISING; end
+##    def self.expired_refund() EXPIRED_REFUND; end
+##    def self.successful()     SUCCESSFUL; end
+##
+##    def fundraising?()     self == FUNDRAISING; end
+##    def expired_refund?()  self == EXPIRED_REFUND; end
+##    def successful?()      self == SUCCESSFUL; end
+##  end
+##
+##  pp state = State.fundraising     #=> #<State @key=:fundraising, @value=0>
 ##  pp state.fundraising?            #=> true
 ##  pp state.expired_refund?         #=> false
 ##  pp state.successful?             #=> false
-##  pp state = State.expired_refund  #=> #<State @name=:expired_refund, @value=1>
+##  pp state = State.expired_refund  #=> #<State @key=:expired_refund, @value=1>
 ##  pp state.fundraising?            #=> false
 ##  pp state.expired_refund?         #=> true
 ##  pp state.successful?             #=> false
@@ -43,7 +42,16 @@
 ## base class for enum
 class Enum
   ## return a new Enum read-only class
-  def self.build_class( *names )
+
+  def initialize( key, value )
+    @key   = key
+    @value = value
+  end
+
+
+  ###################
+  ##  meta-programming "macro" - build class (on the fly)
+  def self.build_class( *keys )
     klass = Class.new( Enum )
 
     ## add self.new too - note: call/forward to "old" orginal self.new of Event (base) class
@@ -51,54 +59,20 @@ class Enum
       old_new( *args )
     end
 
-    ##################
-    ##    def initialize( name, value )
-    ##      @name  = name
-    ##      @value = value
-    ##    end
+    keys.each_with_index do |key,index|
+      klass.class_eval( <<RUBY )
+        #{key.upcase} = new( :#{key}, #{index} )
 
-    klass.class_eval do
-      def initialize( name, value )
-        @name =  name
-        @value = value
-      end
+        def #{key}?
+          self == #{key.upcase}
+        end
+
+        def self.#{key}
+          #{key.upcase}
+        end
+RUBY
     end
 
-    ############################################
-    ##    def fundraising?()     self == self.class.fundraising; end
-    ##    def expired_refund?()  self == self.class.expired_refund; end
-    ##    def successful?()      self == self.class.successful; end
-
-    names.each do |name|
-      klass.class_eval( "def #{name}?() self == self.class.#{name}; end" )
-    end
-
-    ###################################################
-    ##    def self.create
-    ##      @fundraising    = new(:fundraising,    0)
-    ##      @expired_refund = new(:expired_refund, 1)
-    ##      @successful     = new(:successful,     2)
-    ##    end
-
-    code = "def create\n"
-    names.each_with_index do |name,index|
-      code << "   @#{name} = new(:#{name}, #{index})\n"
-    end
-    code << "end"
-    klass.instance_eval( code )
-
-    ####################################################
-    ##   def self.fundraising()    @fundraising; end
-    ##   def self.expired_refund() @expired_refund; end
-    ##   def self.successful()     @successful; end
-    names.each do |name|
-      code = "def #{name}() @#{name}; end"
-      klass.instance_eval( code )
-    end
-
-    ###############
-    ##  create ## note: call create
-    klass.create
     klass
   end
 
@@ -107,4 +81,3 @@ class Enum
     alias_method :new,     :build_class    # replace original version with create
   end
 end  # class Enum
-
