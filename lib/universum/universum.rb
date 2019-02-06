@@ -103,10 +103,13 @@ end
 
 
 class Array
-  def self.of( *args )
-     Array.new    ## that is, "plain" [] with all "standard" defaults
+  ## "typed" safe array "constructor"
+  ## e.g.  Array.of( Address ) or Array.of( Money ) etc.
+  def self.of( klass )
+    SafeArray.new( klass )
   end
 end
+
 
 
 class String
