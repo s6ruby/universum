@@ -174,7 +174,7 @@ def initialize(
       time_in_hours_for_fundraising,
       campaign_url,
       fund_recipient,
-      mminimum_to_raise )
+      minimum_to_raise )
 
   @creator          = msg.sender
   @fund_recipient   = fund_recipient   # note: creator may be different than recipient
