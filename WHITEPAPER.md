@@ -86,7 +86,7 @@ Join in. Version 0.1 (code-named Big Bang) upcoming.
 
 ## Appendix
 
-Token Contract Sample Script - [`tokens/token_test.rb`](https://github.com/openblockchains/universe/blob/master/tokens/token_test.rb):
+Token Contract Sample Script - [`tokens/token_test.rb`](https://github.com/s6ruby/universum-contracts/blob/master/tokens/token_test.rb):
 
 ``` ruby
 # To test the contract script run:
