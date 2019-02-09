@@ -1,4 +1,4 @@
-New to Universum? See the [Universum (World Computer) White Paper](https://github.com/openblockchains/universum/blob/master/WHITEPAPER.md)!
+New to Universum? See the [Universum (World Computer) White Paper](https://github.com/s6ruby/universum/blob/master/WHITEPAPER.md)!
 
 
 
@@ -7,8 +7,8 @@ New to Universum? See the [Universum (World Computer) White Paper](https://githu
 next generation ethereum 2.0 world computer runtime - run contract scripts / transactions in plain vanilla / standard ruby on the blockchain - update the (contract-protected / isolated) world states with plain vanilla / standard SQL
 
 
-* home  :: [github.com/openblockchains/universum](https://github.com/openblockchains/universum)
-* bugs  :: [github.com/openblockchains/universum/issues](https://github.com/openblockchains/universum/issues)
+* home  :: [github.com/s6ruby/universum](https://github.com/s6ruby/universum)
+* bugs  :: [github.com/s6ruby/universum/issues](https://github.com/s6ruby/universum/issues)
 * gem   :: [rubygems.org/gems/universum](https://rubygems.org/gems/universum)
 * rdoc  :: [rubydoc.info/gems/universum](http://rubydoc.info/gems/universum)
 
@@ -56,21 +56,21 @@ contract Greeter is Mortal {
 and
 
 ``` ruby
-class Greeter < Contract
+##################
+# Greeter Contract
 
-  def initialize( greeting )
-    @owner    = msg.sender
-    @greeting = greeting
-  end
+def initialize( greeting )
+  @owner    = msg.sender
+  @greeting = greeting
+end
 
-  def greet
-    @greeting
-  end
+def greet
+  @greeting
+end
 
-  def kill
-    selfdestruct( msg.sender )  if msg.sender == @owner
-  end
-end  # class Greeter
+def kill
+  selfdestruct( msg.sender )  if msg.sender == @owner
+end
 ```
 
 (Source: [`contracts/greeter.rb`](test/contracts/greeter.rb))
@@ -82,18 +82,17 @@ And let's run the greeter with Universum (Uni):
 ``` ruby
 require 'universum'
 
-require_relative 'greeter'
-
-
 Account['0x1111']    ## setup a test account
 
-tx = Tx.send( from: '0x1111', data: [Greeter, 'Hello World!'] )
+## create contract (english version)
+tx = Uni.send_transaction( from: '0x1111', data: ['./greeter', 'Hello World!'] )
 greeter = tx.receipt.contract
 
 puts greeter.greet
 #=> Hello World!
 
-tx = Tx.send( from: '0x1111', data: [Greeter, '¡Hola, mundo!'] )
+## create contract (spanish version)
+tx = Uni.send_transaction( from: '0x1111', data: ['./greeter', '¡Hola, mundo!'] )
 greeter_es = Receipt[ tx ].contract
 
 puts greeter_es.greet
@@ -141,23 +140,23 @@ contract MyToken {
 and
 
 ``` ruby
-class MyToken < Contract
+############################
+## My Token Contract
 
-  def initialize( initial_supply )
-    @balance_of = Mapping.of( Address => Money )
-    @balance_of[ msg.sender] = initial_supply
-  end
+def initialize( initial_supply )
+  @balance_of = Mapping.of( Address => Money )
+  @balance_of[ msg.sender] = initial_supply
+end
 
-  def transfer( to, value )
-    assert( @balance_of[ msg.sender ] >= value )
-    assert( @balance_of[ to ] + value >= @balance_of[ to ] )
+def transfer( to, value )
+  assert @balance_of[ msg.sender ] >= value 
+  assert @balance_of[ to ] + value >= @balance_of[ to ]
 
-    @balance_of[ msg.sender ] -= value
-    @balance_of[ to ]         += value
+  @balance_of[ msg.sender ] -= value
+  @balance_of[ to ]         += value
 
-    true
-  end
-end   # class MyToken
+  true
+end
 ```
 
 (Source: [`contracts/mytoken.rb`](test/contracts/mytoken.rb))
@@ -167,12 +166,12 @@ end   # class MyToken
 
 ## More Contract Samples
 
-See the [`/universum-contracts`](https://github.com/openblockchains/universum-contracts) collection.
+See the [`/universum-contracts`](https://github.com/s6ruby/universum-contracts) collection.
 
 
 ## More Documentation / Articles / Contracts
 
-[Programming Crypto Blockchain Contracts Step-by-Step Book / Guide](https://github.com/openblockchains/programming-cryptocontracts) - Let's Start with Ponzi & Pyramid Schemes. Run Your Own Lotteries, Gambling Casinos and more on the Blockchain World Computer...
+[Programming Crypto Blockchain Contracts Step-by-Step Book / Guide](https://github.com/s6ruby/programming-cryptocontracts) - Let's Start with Ponzi & Pyramid Schemes. Run Your Own Lotteries, Gambling Casinos and more on the Blockchain World Computer...
 
 
 
