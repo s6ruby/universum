@@ -24,11 +24,19 @@ class Integer
   #
   #  wei                     1 wei | 1
   #  kwei (babbage)        1e3 wei | 1_000
-  #  mwei (lovelace)       1e6 wei | 1_000_000
+  #  mwei (lovelace | ada) 1e6 wei | 1_000_000
   #  gwei (shannon)        1e9 wei | 1_000_000_000
   #  microether (szabo)   1e12 wei | 1_000_000_000_000
   #  milliether (finney)  1e15 wei | 1_000_000_000_000_000
   #  ether                1e18 wei | 1_000_000_000_000_000_000
+  #
+  #  Names in Honor:
+  #   wei            => Wei Dai
+  #   lovelace | ada => Ada Lovelace (1815-1852)
+  #   babbage	       => Charles Babbage (1791-1871)
+  #   shannon	       => Claude Shannon (1916-2001)
+  #   szabo          => Nick Szabo
+  #   finney         => Hal Finney (1956-2014)
 
   def wei()        self; end
   def kwei()       self * E3; end
@@ -42,12 +50,15 @@ class Integer
   ## alias - use alias or alias_method - why? why not?
   def babbage()   kwei; end
   def lovelace()  mwei; end
+  def ada()       mwei; end    ## todo/check: in use, really? keep just lovelave- why? why not?
   def shannon()   gwei; end
   def szabo()     microether; end
   def finney()    milliether; end
 
   def microeth()  microether; end
+  def micro()     microether; end
   def millieth()  milliether; end
+  def milli()     milliether; end
   def eth()       ether; end
 
 end  # class Integer

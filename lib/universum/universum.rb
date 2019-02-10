@@ -77,38 +77,31 @@ end
 
 
 class Mapping
+
   def self.of( *args )
      ## e.g. gets passed in [{Address=>Integer}]
      ##  check for Integer - use Hash.new(0)
      ##  check for Bool    - use Hash.new(False)
      if args[0].is_a? Hash
        arg = args[0].to_a   ## convert to array (for easier access)
-       if arg[0][1] == Integer
-         Hash.new( Integer.zero )     ## if key missing returns 0 and NOT nil (the default)
-       elsif arg[0][1] == Money
-         Hash.new( Money.zero )     ## if key missing returns 0 and NOT nil (the default)
-       elsif arg[0][1] == Bool
-         Hash.new( Bool.zero )
-       elsif arg[0][1] == Address
-         Hash.new( Address.zero )
-       else   ## assume "standard" defaults
-         ## todo: issue warning about unknown type - why? why not?
-         Hash.new
-       end
+       klass_key   = arg[0][0]
+       klass_value = arg[0][1]
+       klass = SafeHash.build_class( klass_key, klass_value )
+       klass.new
      else
+       ## todo/fix: throw argument error/exception
        Hash.new    ## that is, "plain" {} with all "standard" defaults
      end
   end
 end
 
 
-
-
 class Array
   ## "typed" safe array "constructor"
-  ## e.g.  Array.of( Address ) or Array.of( Money ) etc.
-  def self.of( klass )
-    SafeArray.new( klass )
+  ## e.g.  Array.of( Address ) or Array.of( Money ) or Array.of( Proposal, size: 2 ) etc.
+  def self.of( klass_value )
+    klass = SafeArray.build_class( klass_value )
+    klass.new  ## todo: add klass.new( **kwargs ) for size: 2 etc.
   end
 end
 

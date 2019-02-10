@@ -16,6 +16,9 @@ require 'universum/version'    # note: let version always go first
 require 'universum/units_time'
 require 'universum/units_money'
 
+require 'universum/safe_array'
+require 'universum/safe_hash'
+
 require 'universum/enum'
 require 'universum/event'
 

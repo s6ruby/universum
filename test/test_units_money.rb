@@ -28,12 +28,14 @@ def test_money
 
   assert_equal 1_000_000_000_000_000,       1.milliether
   assert_equal 1_000_000_000_000_000,       1.millieth
+  assert_equal 1_000_000_000_000_000,       1.milli
   assert_equal 1_000_000_000_000_000,       1.finney
   assert_equal 1_000_000_000_000_000*2,     1.milliether*2
   assert_equal value+1_000_000_000_000_000, value+1.milliether
 
   assert_equal 1_000_000_000_000,       1.microether
   assert_equal 1_000_000_000_000,       1.microeth
+  assert_equal 1_000_000_000_000,       1.micro
   assert_equal 1_000_000_000_000,       1.szabo
   assert_equal 1_000_000_000_000*2,     1.microether*2
   assert_equal value+1_000_000_000_000, value+1.microether
@@ -45,6 +47,7 @@ def test_money
 
   assert_equal 1_000_000,       1.mwei
   assert_equal 1_000_000,       1.lovelace
+  assert_equal 1_000_000,       1.ada
   assert_equal 1_000_000*2,     1.mwei*2
   assert_equal value+1_000_000, value+1.mwei
 
