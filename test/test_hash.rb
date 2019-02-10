@@ -10,8 +10,21 @@ require 'helper'
 
 class TestHash < MiniTest::Test
 
+  ## sig: [Integer, Bool, Integer, Address]
+  Voter = Struct.new( :weight, :voted, :vote, :delegate ) do
+     def self.new_zero
+       new( 0, false, 0, '0x0000' )
+     end
+     def self.zero
+       @zero ||= new_zero
+     end
+     def self.by_ref?()   true;   end   ## reference semantics?
+     def self.by_value?() false;  end   ## value semantics?
+  end
+
   Hash_X_Integer = SafeHash.build_class( String, Integer )
   Hash_X_Bool    = SafeHash.build_class( String, Bool )
+  Hash_X_Voter   = SafeHash.build_class( String, Voter )
 
 def test_integer
   pp Hash_X_Integer
@@ -49,14 +62,24 @@ def test_bool
 end
 
 
-def test_zero_dup
-  assert_equal Hash_X_Integer.zero, Hash_X_Integer.zero
+def test_voter
+  pp Hash_X_Voter
+  pp h = Hash_X_Voter.new
 
-  zerodup = Hash_X_Integer.zero.dup
-  zerodup['0x111'] += 1
-  pp zerodup
+  assert_equal Voter, Hash_X_Voter.klass_value
+  assert_equal Voter.zero, h['0x1111']
+  assert_equal Voter.zero, h['0x2222']
 
-  assert_equal 0, Hash_X_Integer.zero.size   ## hash empty?
+  h['0x1111'].voted = true
+  h['0x2222'].voted = true
+  assert_equal true,  h['0x1111'].voted
+  assert_equal true,  h['0x2222'].voted
+
+  pp h['0x1111']
+  pp h['0x2222']
+  
+  ## check Mapping.of  (uses cached classes)
+  assert_equal Hash_X_Voter, Mapping.of( String => Voter ).class
 end
 
 

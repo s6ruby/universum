@@ -49,15 +49,4 @@ def test_bool
 end
 
 
-def test_zero_dup
-  assert_equal Array_Integer.zero, Array_Integer.zero
-
-  zerodup = Array_Integer.zero.dup
-  zerodup[0] += 1
-  pp zerodup
-
-  assert_equal 0, Array_Integer.zero.size   ## array empty?
-end
-
-
 end # class TestArray

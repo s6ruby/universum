@@ -18,9 +18,6 @@ class SafeArray
       def self.klass_value
         @klass_value ||= #{klass_value}
       end
-      def self.zero
-        @zero        ||= new
-      end
 RUBY
     ## add to cache for later (re)use
     cache[ klass_value ] = klass
@@ -40,11 +37,6 @@ RUBY
     @ary  = []
   end
 
-  def initialize_dup( other )
-    ## note: if dup(licated) make sure to get a dup(licate) for the array (@ary) too!!!
-    @ary = @ary.dup
-  end
-
   def []=(index, value)
     @ary[index] = value
   end
@@ -57,10 +49,9 @@ RUBY
       ##     let user change the returned zero object - why? why not?
       if self.class.klass_value.respond_to?( :by_ref? ) &&
          self.class.klass_value.by_ref?    ## e.g. (Safe)Struct, SafeArray, SafeHash
-        ## note: use a dup(licated) unfrozen copy of the zero object
+        ## note: use a new unfrozen copy of the zero object
         ##    changes to the object MUST be possible (new "empty" modifable object expected)
-        ## use new_zero (and NOT zero.dup - why? why not?)
-       item = self.class.klass_value.zero.dup
+       item = self.class.klass_value.new_zero
      else  # assume value semantics e.g. Integer, Bool, etc. zero values gets replaced
        ## puts "use value semantics"
        item = self.class.klass_value.zero

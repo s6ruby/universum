@@ -28,9 +28,6 @@ class SafeHash
       def self.klass_value
         @klass_value ||= #{klass_value}
       end
-      def self.zero
-        @zero        ||= new
-      end
 RUBY
     ## add to cache for later (re)use
     cache[ klass_value ] = klass
@@ -47,11 +44,6 @@ RUBY
   def initialize
     ## todo/check: if hash works if value is a (nested) hash
     @h  = {}
-  end
-
-  def initialize_dup( other )
-    ## note: if dup(licated) make sure to get a dup(licate) for the hash (@h) too!!!
-    @h = @h.dup
   end
 
 
@@ -74,9 +66,7 @@ RUBY
          self.class.klass_value.by_ref?    ## e.g. (Safe)Struct, SafeArray, SafeHash
         ## note: use a dup(licated) unfrozen copy of the zero object
         ##    changes to the object MUST be possible (new "empty" modifable object expected)
-
-        ## use new_zero (and NOT zero.dup - why? why not?)
-       item = @h[ key ] = self.class.klass_value.zero.dup
+       item = @h[ key ] = self.class.klass_value.new_zero
      else  # assume value semantics e.g. Integer, Bool, etc. zero values gets replaced
        ## puts "use value semantics"
        item = @h[ key ] = self.class.klass_value.zero
