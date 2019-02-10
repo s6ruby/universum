@@ -8,7 +8,7 @@ Hoe.spec 'universum' do
   self.summary = "universum - next generation ethereum 2.0 world computer runtime; run contract scripts / transactions in plain vanilla / standard ruby on the blockchain; update the (contract-protected / isolated) world states with plain vanilla / standard SQL"
   self.description = summary
 
-  self.urls    = ['https://github.com/openblockchains/universum']
+  self.urls    = ['https://github.com/s6ruby/universum']
 
   self.author  = 'Gerald Bauer'
   self.email   = 'wwwmake@googlegroups.com'

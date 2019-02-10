@@ -4,11 +4,11 @@
 class Integer
 
   ######################################
-  ## note: there's NO month!!!
+  ## note: there's NO month (for now)!!!
   ##   why?  month might be 28,29,30,31  days
   ##    use days e.g. 30.days or 31.days etc.
 
-  HOUR_IN_SECONDS       = 60*60  # 60 minutes * 60 seconds
+  HOUR_IN_SECONDS       =  60 * 60                # 60 minutes * 60 seconds
   DAY_IN_SECONDS        =  24 * HOUR_IN_SECONDS   # 24 hours * 60 * 60
   WEEK_IN_SECONDS       =   7 * DAY_IN_SECONDS    #  7 days * 24 * 60 * 60
   FORTNIGHT_IN_SECONDS  =  14 * DAY_IN_SECONDS    # 14 days * 24 * 60 * 60
@@ -22,8 +22,8 @@ class Integer
   def fortnight() self * FORTNIGHT_IN_SECONDS; end
   def year()      self * YEAR_IN_SECONDS; end
 
-  ##############################################
-  ## alias - use alias or alias_method ?
+  ########################################################
+  ## alias - use alias or alias_method - why? why not?
   def seconds() second; end
   def secs()    second; end
   def sec()     second; end

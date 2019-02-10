@@ -8,10 +8,10 @@
 require 'helper'
 
 
-require 'contracts/greeter'    ## use require_relative - why? why not?
-
 
 class TestGreeter < MiniTest::Test
+
+Greeter = Contract.load( "#{Universum.root}/test/contracts/greeter" )
 
 def test_uni
    account = Account['0x1111']

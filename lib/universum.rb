@@ -14,6 +14,7 @@ require 'uri'
 require 'universum/version'    # note: let version always go first
 
 require 'universum/units_time'
+require 'universum/units_money'
 
 require 'universum/enum'
 require 'universum/event'

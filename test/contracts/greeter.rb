@@ -1,18 +1,17 @@
 # encoding: utf-8
 
+######################
+# Greeter Contract
 
-class Greeter < Contract
+def initialize( greeting )
+  @owner    = msg.sender
+  @greeting = greeting
+end
 
-  def initialize( greeting )
-    @owner    = msg.sender
-    @greeting = greeting
-  end
+def greet
+  @greeting
+end
 
-  def greet
-    @greeting
-  end
-
-  def kill
-     selfdestruct( msg.sender )  if msg.sender == @owner
-  end
-end  # class Greeter
+def kill
+  selfdestruct( msg.sender )  if msg.sender == @owner
+end
