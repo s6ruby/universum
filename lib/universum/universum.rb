@@ -2,8 +2,10 @@
 
 
 
-def sha256( str )
-  Digest::SHA256.hexdigest( str )
+def sha256( *args )
+  ## note: allow multiple args (string)
+  ##   all args will get auto-joined (with no padding)
+  Digest::SHA256.hexdigest( args.join )
 end
 
 
@@ -185,9 +187,9 @@ end # class Account
 
 
 class Contract
- 
+
   #########
-  # load "class-less" contract 
+  # load "class-less" contract
   #   e.g.   SathoshiDice = Contract.load( './sathoshi_dice' )
   def self.load( path )
     extname = File.extname( path )   #=> ".rb"
@@ -203,8 +205,8 @@ class Contract
     klass.class_eval( code )   ## note: use class_eval (NOT instance_eval)
     klass
   end
-   
-  
+
+
   @@directory = {}
   def self.find_by_address( key )
      ## clean key (allow "embedded" class name e.g 0x4de2ee8 (SatoshiDice))

@@ -13,6 +13,8 @@ require 'uri'
 ## our own code
 require 'universum/version'    # note: let version always go first
 
+require 'universum/units_time'
+
 require 'universum/enum'
 require 'universum/event'
 
