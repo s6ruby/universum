@@ -18,8 +18,6 @@ class TestStruct < MiniTest::Test
      def self.zero
        @zero ||= new_zero
      end
-     def self.by_ref?()   true;   end   ## reference semantics?
-     def self.by_value?() false;  end   ## value semantics?
   end
 
 

@@ -25,8 +25,6 @@ RUBY
   end
 
 
-  def self.by_ref?()   true;   end   ## reference semantics?
-  def self.by_value?() false;  end   ## value semantics?
   def self.new_zero()  new;  end
   def self.zero()      @zero ||= new_zero;  end
 
@@ -47,8 +45,7 @@ RUBY
       ## todo/check:
       ##    always return (deep) frozen zero object - why? why not?
       ##     let user change the returned zero object - why? why not?
-      if self.class.klass_value.respond_to?( :by_ref? ) &&
-         self.class.klass_value.by_ref?    ## e.g. (Safe)Struct, SafeArray, SafeHash
+      if self.class.klass_value.respond_to?( :new_zero )
         ## note: use a new unfrozen copy of the zero object
         ##    changes to the object MUST be possible (new "empty" modifable object expected)
        item = self.class.klass_value.new_zero

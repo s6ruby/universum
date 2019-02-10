@@ -18,8 +18,6 @@ class TestHash < MiniTest::Test
      def self.zero
        @zero ||= new_zero
      end
-     def self.by_ref?()   true;   end   ## reference semantics?
-     def self.by_value?() false;  end   ## value semantics?
   end
 
   Hash_X_Integer = SafeHash.build_class( String, Integer )
@@ -77,7 +75,7 @@ def test_voter
 
   pp h['0x1111']
   pp h['0x2222']
-  
+
   ## check Mapping.of  (uses cached classes)
   assert_equal Hash_X_Voter, Mapping.of( String => Voter ).class
 end
