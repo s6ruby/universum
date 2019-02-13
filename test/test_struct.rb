@@ -32,4 +32,35 @@ def test_zero
 end
 
 
+##########
+##  todo/fix!!!
+    
+Bet = Struct.new( user:   Address(0),
+                      block:  0,
+                      cap:    0,
+                      amount: 0 )
+
+pp Bet
+bet = Bet.new_zero
+pp bet
+bet.cap    = 20_000
+bet.amount = 100
+pp bet
+pp Bet.zero
+pp Bet.zero
+pp bet.is_a? Struct
+
+bet = Bet.new_zero
+pp bet
+pp Bet.zero
+pp Bet.zero
+pp Bet.new( 0, 0, 0, 0 )
+pp bet.is_a? Struct
+
+pp Bet.new
+pp Bet.new_zero
+pp Bet.zero
+pp Bet.zero
+  
+
 end # class TestStruct
