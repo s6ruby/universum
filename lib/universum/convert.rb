@@ -16,3 +16,11 @@ def Address( arg )
   end
 end
 
+
+
+###
+## todo - add a global method_missing handler for (auto-)adding converters for Structs - why? why not?
+##  e.g. how to auto-create   Vote(0) for Vote.zero  or Bet(0) for Bet.zero and so on - why? why not?
+##
+##   def Vote( arg ) Vote.zero; end  
+
