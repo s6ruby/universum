@@ -9,16 +9,16 @@ require 'time'
 require 'uri'
 
 
+## 3rd party gems
+require 'safestruct'    # SafeArray, SafeHash, SafeStruct, etc.
+
+
 
 ## our own code
 require 'universum/version'    # note: let version always go first
 
 require 'universum/units_time'
 require 'universum/units_money'
-
-require 'universum/safe_array'
-require 'universum/safe_hash'
-require 'universum/safe_struct'
 
 require 'universum/enum'
 require 'universum/event'
