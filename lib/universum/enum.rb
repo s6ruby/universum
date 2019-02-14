@@ -52,6 +52,15 @@ class Enum
   ###################
   ##  meta-programming "macro" - build class (on the fly)
   def self.build_class( *keys )
+
+    ## check if all keys are symbols and follow the ruby id(entifier) naming rules
+    keys.each do |key|
+      if key.is_a?( Symbol ) && key =~ /\A[a-z][a-zA-Z0-9_]*\z/
+      else
+        raise ArgumentError.new( "[Enum] arguments to Enum.new must be all symbols following the ruby id naming rules; >#{key}< failed" )
+      end
+    end
+       
     klass = Class.new( Enum )
 
     ## add self.new too - note: call/forward to "old" orginal self.new of Event (base) class
