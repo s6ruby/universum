@@ -24,6 +24,7 @@ def test_bet_placed
   assert_equal '0xaaaa', bet.user
   assert_equal 2000,     bet.cap
   assert_equal 100,      bet.amount
+  assert_equal true,     bet.frozen?
 end
 
 def test_roll
@@ -33,6 +34,7 @@ def test_roll
   assert       roll.is_a?( Event )
   assert_equal 1,    roll.id
   assert_equal 2345, roll.rolled
+  assert_equal true, roll.frozen?
 end
 
 end # class TestEvent

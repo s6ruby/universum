@@ -36,6 +36,7 @@ class Event
         fields.zip( args ).each do |field, arg|
           instance_variable_set( "@#{field}", arg )
         end
+        freeze    ### note: add freeze - assumes "immutable" struct-like class
       end
 
       fields.each do |field|

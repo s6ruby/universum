@@ -11,14 +11,7 @@ require 'helper'
 class TestHash < MiniTest::Test
 
   ## sig: [Integer, Bool, Integer, Address]
-  Voter = Struct.new( :weight, :voted, :vote, :delegate ) do
-     def self.new_zero
-       new( 0, false, 0, '0x0000' )
-     end
-     def self.zero
-       @zero ||= new_zero
-     end
-  end
+  Voter = SafeStruct.new( weight: 0, voted: false, vote: 0, delegate: Address(0) )
 
   Hash_X_Integer = SafeHash.build_class( String, Integer )
   Hash_X_Bool    = SafeHash.build_class( String, Bool )
@@ -70,8 +63,8 @@ def test_voter
 
   h['0x1111'].voted = true
   h['0x2222'].voted = true
-  assert_equal true,  h['0x1111'].voted
-  assert_equal true,  h['0x2222'].voted
+  assert_equal true,  h['0x1111'].voted?
+  assert_equal true,  h['0x2222'].voted?
 
   pp h['0x1111']
   pp h['0x2222']

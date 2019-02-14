@@ -18,6 +18,7 @@ require 'universum/units_money'
 
 require 'universum/safe_array'
 require 'universum/safe_hash'
+require 'universum/safe_struct'
 
 require 'universum/enum'
 require 'universum/event'
@@ -33,6 +34,7 @@ require 'universum/receipt'
 
 require 'universum/universum'
 
+require 'universum/convert'
 
 
 puts Universum.banner   ## say hello

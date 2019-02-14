@@ -24,6 +24,14 @@ def self.build_class( **attributes )
         instance_variable_set( "@#{key}", arg )
       end
     end
+
+    define_method( :== ) do |other|
+       return false unless other.is_a?( klass )
+        attributes.keys.all? do |key|
+          __send__( key ) == other.__send__( key )
+        end
+    end
+    alias_method :eql?, :==
   end
 
   ## add self.new too - note: call/forward to "old" orginal self.new of Event (base) class
@@ -76,5 +84,3 @@ end # class SafeStruct
 #  => warning: already initialized constant Struct
 OldStruct = Struct        ## save old struct class
 Struct    = SafeStruct
-
-

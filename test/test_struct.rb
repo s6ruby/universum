@@ -10,57 +10,70 @@ require 'helper'
 
 class TestStruct < MiniTest::Test
 
-  ## sig: [Integer, Bool, Integer, Address]
-  Voter = Struct.new( :weight, :voted, :vote, :delegate ) do
-     def self.new_zero
-       new( 0, false, 0, '0x0000' )
-     end
-     def self.zero
-       @zero ||= new_zero
-     end
-  end
+## sig: [Integer, Bool, Integer, Address]
+Voter = SafeStruct.new( weight: 0, voted: false, vote: 0, delegate: Address(0) )
+
+## sig: [Address, Integer, Integer, Money]
+Bet   = SafeStruct.new( user: Address(0), block: 0, cap: 0, amount: 0 )
 
 
-def test_zero
+def test_voter
   assert_equal Voter.zero, Voter.zero
+  assert_equal '0x0000',   Voter.zero.delegate
+  assert_equal Address(0), Voter.zero.delegate
+  assert_equal false,      Voter.zero.voted?
+  assert_equal 0,          Voter.zero.weight
+  assert_equal 0,          Voter.zero.vote
+  assert_equal true,       Voter.zero.frozen?
 
-  zerodup = Voter.zero.dup
-  zerodup.delegate = '0x1111'
-  pp zerodup
+  voter = Voter.new_zero
 
-  assert_equal '0x0000', Voter.zero.delegate
+  assert_equal false,      voter.frozen?
+  assert_equal Voter.zero, voter
+  assert       Voter.zero == voter
+  assert       Voter.zero.eql?( voter )
+
+  voter.delegate = '0x1111'
+  pp voter
+
+  assert       Voter.zero != voter
+
+  voter2 = Voter.new( 0, false, 0, Address(0) )
+  assert_equal Voter.zero, voter2
+  assert_equal false,      voter2.frozen?
 end
 
+def test_bet
+  pp Bet
+  bet = Bet.new_zero
+  pp bet
 
-##########
-##  todo/fix!!!
-    
-Bet = Struct.new( user:   Address(0),
-                      block:  0,
-                      cap:    0,
-                      amount: 0 )
+  assert_equal Bet.zero, bet
 
-pp Bet
-bet = Bet.new_zero
-pp bet
-bet.cap    = 20_000
-bet.amount = 100
-pp bet
-pp Bet.zero
-pp Bet.zero
-pp bet.is_a? Struct
+  bet.cap    = 20_000
+  bet.amount = 100
 
-bet = Bet.new_zero
-pp bet
-pp Bet.zero
-pp Bet.zero
-pp Bet.new( 0, 0, 0, 0 )
-pp bet.is_a? Struct
+  assert_equal false,  bet.frozen?
+  assert_equal 20_000, bet.cap
+  assert_equal 100,    bet.amount
+  assert       Bet.zero != bet
 
-pp Bet.new
-pp Bet.new_zero
-pp Bet.zero
-pp Bet.zero
-  
+  pp bet
+
+  pp Bet.zero
+  pp Bet.zero
+
+  assert_equal Bet.zero,   Bet.zero
+  assert_equal '0x0000',   Bet.zero.user
+  assert_equal Address(0), Bet.zero.user
+  assert_equal 0,          Bet.zero.block
+  assert_equal 0,          Bet.zero.cap
+  assert_equal 0,          Bet.zero.amount
+  assert_equal true,       Bet.zero.frozen?
+
+  bet2 = Bet.new( Address(0), 0, 0, 0 )
+  assert_equal Bet.zero, bet2
+  assert_equal false,    bet2.frozen?
+end
 
 end # class TestStruct
