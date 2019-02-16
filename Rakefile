@@ -18,7 +18,7 @@ Hoe.spec 'universum' do
   self.history_file = 'CHANGELOG.md'
 
   self.extra_deps = [
-    ['safestruct'],
+    ['safestruct', '>=1.0.0'],
   ]
 
   self.licenses = ['Public Domain']

@@ -12,6 +12,8 @@ require 'uri'
 ## 3rd party gems
 require 'safestruct'    # SafeArray, SafeHash, SafeStruct, etc.
 
+## note: make Mapping an alias for Hash (lets you use Mapping.of() for Hash.of)
+Mapping = Hash
 
 
 ## our own code

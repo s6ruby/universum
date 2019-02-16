@@ -3,6 +3,7 @@
 
 class Contract
 
+  include Safe    # adds support for SafeStruct (Struct), SafeArray (Array), SafeHash (Mapping)
   #########
   # load "class-less" contract
   #   e.g.   SathoshiDice = Contract.load( './sathoshi_dice' )

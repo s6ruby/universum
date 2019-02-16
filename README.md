@@ -82,8 +82,6 @@ And let's run the greeter with Universum (Uni):
 ``` ruby
 require 'universum'
 
-Account['0x1111']    ## setup a test account
-
 ## create contract (english version)
 tx = Uni.send_transaction( from: '0x1111', data: ['./greeter', 'Hello World!'] )
 greeter = tx.receipt.contract
@@ -149,7 +147,7 @@ def initialize( initial_supply )
 end
 
 def transfer( to, value )
-  assert @balance_of[ msg.sender ] >= value 
+  assert @balance_of[ msg.sender ] >= value
   assert @balance_of[ to ] + value >= @balance_of[ to ]
 
   @balance_of[ msg.sender ] -= value
@@ -171,7 +169,10 @@ See the [`/universum-contracts`](https://github.com/s6ruby/universum-contracts) 
 
 ## More Documentation / Articles / Contracts
 
-[Programming Crypto Blockchain Contracts Step-by-Step Book / Guide](https://github.com/s6ruby/programming-cryptocontracts) - Let's Start with Ponzi & Pyramid Schemes. Run Your Own Lotteries, Gambling Casinos and more on the Blockchain World Computer...
+[Programming Crypto Blockchain Contracts Step-by-Step Book / Guide](https://github.com/s6ruby/programming-cryptocontracts) - Let's start with ponzi & pyramid schemes. Run your own lotteries, gambling casinos and more on the blockchain world computer...
+
+[Safe Data Structures (Array, Hash, Struct)](https://github.com/s6ruby/safestruct) - Say goodbye to null / nil (and maybe) and the Billion-Dollar mistake. Say hello to zero and the Billon-Dollar fix.
+
 
 
 
@@ -185,6 +186,8 @@ $ gem install universum
 
 
 ## License
+
+![](https://publicdomainworks.github.io/buttons/zero88x31.png)
 
 The `universum` scripts are dedicated to the public domain.
 Use it as you please with no restrictions whatsoever.
