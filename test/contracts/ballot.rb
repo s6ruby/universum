@@ -9,7 +9,7 @@ Voter    = Struct.new( weight:   0,
 Proposal = Struct.new( vote_count: 0 )
 
 ## Create a new ballot with $(num_proposals) different proposals.
-def initialize( num_proposals )
+def setup( num_proposals )
   @chairperson = msg.sender
   @voters      = Mapping.of( Address => Voter )
   @proposals   = Array.of( Proposal, num_proposals )

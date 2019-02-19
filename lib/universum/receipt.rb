@@ -36,7 +36,7 @@ class Receipt   ## transaction receipt
 
       if contract
         ## note: for easier debugging add class name in () to address (needs to get stripped away in lookup)
-        @contract_address = "#{contract.address} (#{contract.class.name})"
+        @contract_address = "#{contract.address.hex} (#{contract.class.name})"
       else
         @contract_address = nil
       end

@@ -3,7 +3,7 @@
 ######################
 # Greeter Contract
 
-def initialize( greeting )
+def setup( greeting )
   @owner    = msg.sender
   @greeting = greeting
 end

@@ -18,12 +18,12 @@ class Transaction
       account = Account.at( from )   ## lookup account by address
     end
 
-    @from = account.address
+    @from = account.address.hex
 
     if to.is_a?( Contract )
-      @to = "#{to.address} (#{to.class.name})"
+      @to = "#{to.address.hex} (#{to.class.name})"
     elsif to.is_a?( Account )     ## note: to allows Contracts AND Accounts
-      @to = to.address
+      @to = to.address.hex
     else
       @to = to    # might be a contract or account (pass through for now)
     end

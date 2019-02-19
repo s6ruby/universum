@@ -31,6 +31,9 @@ class Universum   ## Uni short for Universum
     counter = @@counter ||= 0    ## total tx counter for debugging (start with 0)
     @@counter += 1
 
+    ## todo/fix:
+    ##   allow/add auto-create account for convenience (and easy testing)!!!
+
     ## note: always lookup (use) account for now
     if from.is_a?( Account )
       account = from
@@ -39,7 +42,7 @@ class Universum   ## Uni short for Universum
     end
 
     ## setup contract msg context
-    self.msg = { sender: account.address, value: value }
+    self.msg = { sender: account.address.hex, value: value }
 
 
     ## allow shortcut for Class (without ctor arguments) - no need to wrap in array
@@ -54,7 +57,7 @@ class Universum   ## Uni short for Universum
       args  = data[1..-1]   ## arguments
 
       puts "** tx ##{counter} (block ##{block.number}): #{tx.log_str}"
-      contract = klass.new( *args )   ## note: balance and this (and msg.send/transfer) NOT available/possible !!!!
+      contract = klass.create( *args )   ## note: balance and this (and msg.send/transfer) NOT available/possible !!!!
 
       if value > 0
         ## move value to msg (todo/fix: restore if exception)
@@ -62,9 +65,9 @@ class Universum   ## Uni short for Universum
         contract._add( value )        # add / credit to the recipient
       end
 
-      puts " new #{contract.class.name} contract adddress: #{contract.address.inspect}"
+      puts " new #{contract.class.name} contract adddress: #{contract.address.hex.inspect}"
       ## add new contract to (lookup) directory
-      Contract.store( contract.address, contract )
+      Contract.store( contract.address.hex, contract )
 
       ## issue (mined) transaction receipt
       receipt = Receipt.new( tx: tx,

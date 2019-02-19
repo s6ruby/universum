@@ -3,9 +3,9 @@
 #########################
 # My Token Contract
 
-def initialize( initial_supply )
+def setup( initial_supply )
   @balance_of = Mapping.of( Address => Money )
-  @balance_of[ msg.sender] = initial_supply
+  @balance_of[ msg.sender ] = initial_supply
 end
 
 def transfer( to, value )

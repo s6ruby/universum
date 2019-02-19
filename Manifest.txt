@@ -12,6 +12,7 @@ lib/universum/enum.rb
 lib/universum/event.rb
 lib/universum/function.rb
 lib/universum/receipt.rb
+lib/universum/storage.rb
 lib/universum/transaction.rb
 lib/universum/type.rb
 lib/universum/units_money.rb
@@ -26,6 +27,8 @@ test/test_ballot.rb
 test/test_enum.rb
 test/test_event.rb
 test/test_greeter.rb
+test/test_mytoken.rb
+test/test_storage.rb
 test/test_units_money.rb
 test/test_units_time.rb
 test/test_version.rb

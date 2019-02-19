@@ -40,7 +40,35 @@ class Contract
 
   ####
   #  account (builtin) services / transaction methods
-  include Address    ## includes address + send/transfer/balance
+  def self.create( *args )
+    klass = new( nil, *args )
+    klass.setup( *args )
+    klass
+  end
+
+  def initialize( address=nil, *args )
+    ##  fix/todo:  use/lookup proper addr from contract
+    ## construct address for now from object_id
+    address = "0x#{(object_id << 1).to_s(16)}"  if address.nil?
+    @address = Address.new( address )
+    @storage = Storage.new
+
+    ###########
+    # note: does NOT auto-call setup - why? why not?
+    #   use create !!!!!!
+
+    ## todo: make initialize private - why? why not?
+  end
+
+
+  def setup
+    # default (built-in) setup; do nothing
+  end
+
+  def address() @address; end
+  def this()    @address; end  ## returns "embedded" address of current contract (that is, us!)
+
+  def storage() @storage; end
 
   ## function sig(nature) macro for types (dummy for now)
   # e.g. use like
@@ -54,9 +82,9 @@ class Contract
 
   ####
   #  todo/double check: auto-add payable default fallback - why? why not?
-  def receive    ## @payable default fallback - use different name - why? why not? (e.g. handle/process/etc.)
-  end
-
+  #    no - do NOT add, BUT add payable config for receive
+  # def receive    ## @payable default fallback - use different name - why? why not? (e.g. handle/process/etc.)
+  # end
 
   def assert( condition )
     if condition == true
@@ -67,7 +95,6 @@ class Contract
   end
 
 
-  def this()       Universum.this;         end   ## returns current contract
   def log( event ) Universum.log( event ); end
   def msg()        Universum.msg;          end
   def block()      Universum.block;        end
