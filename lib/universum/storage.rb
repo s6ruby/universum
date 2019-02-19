@@ -10,12 +10,12 @@ class Storage
   end
 
   def [](key)
-    puts "Storage#[](#{key})"
+    puts "  SLOAD( #{key.inspect} )"
     @data[key]
   end
 
   def []=(key,value)
-    puts "Storage#[]=(#{key}, #{value})"
+    puts "  SSTORE( #{key.inspect}, #{value.inspect} )"
     @data[key] = value
   end
 

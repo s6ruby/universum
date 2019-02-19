@@ -59,7 +59,7 @@ and
 ##################
 # Greeter Contract
 
-def initialize( greeting )
+def setup( greeting )
   @owner    = msg.sender
   @greeting = greeting
 end
@@ -141,7 +141,7 @@ and
 ############################
 ## My Token Contract
 
-def initialize( initial_supply )
+def setup( initial_supply )
   @balance_of = Mapping.of( Address => Money )
   @balance_of[ msg.sender] = initial_supply
 end

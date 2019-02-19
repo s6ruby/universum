@@ -17,6 +17,25 @@ class Contract
     end
 
     code = File.open( path, 'r:bom|utf-8' ) { |f| f.read }
+
+    ## auto-patch!!!!
+    ##   change all ivars to use storage
+    ##   e.g.  @greeting                  => storage.greeting
+    ##         @balance_of[ msg.sender ]  => storage.balance_of[ msg.sender ]
+    ##         ...
+    ##
+    ##  todo/fix: check for possible class variables!! (e.g. @@logger or something)
+    ##               make regex "smarter"
+    code = code.gsub( /(@{1,})([a-z][a-zA-Z0-9_]*)/ ) do |_|
+      if $1.size == 1
+         puts "auto-patching contract code >#{$1}#{$2}< to >storage[ :#{$2} ]<"
+         "storage[ :#{$2} ]"
+      else
+         ## assume class variable - skip - keep as is
+         "#{$1}#{$2}"
+      end
+    end
+
     klass = Class.new( Contract )
     klass.class_eval( code )   ## note: use class_eval (NOT instance_eval)
     klass
