@@ -10,19 +10,20 @@ require 'uri'
 
 
 ## 3rd party gems
-require 'safestruct'    # SafeArray, SafeHash, SafeStruct, etc.
+require 'safestruct'    # SafeArray, SafeHash, SafeStruct, Enum, etc.
 
 ## note: make Mapping an alias for Hash (lets you use Mapping.of() for Hash.of)
 Mapping = Hash
+
+require 'units-time'    # Timestamp, Timedelta, etc.
+require 'units-money'   # Money, etc.
+
 
 
 ## our own code
 require 'universum/version'    # note: let version always go first
 
-require 'universum/units_time'
-require 'universum/units_money'
 
-require 'universum/enum'
 require 'universum/event'
 
 require 'universum/function'

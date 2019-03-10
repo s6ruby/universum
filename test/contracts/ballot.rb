@@ -1,12 +1,13 @@
 #########################
 # Ballot Contract
 
-Voter    = Struct.new( weight:   0,
-                       voted:    false,
-                       vote:     0,
-                       delegate: Address(0))
+Struct.new( :Voter,
+              weight:   0,
+              voted:    false,
+              vote:     0,
+              delegate: Address(0))
 
-Proposal = Struct.new( vote_count: 0 )
+Struct.new( :Proposal, vote_count: 0 )
 
 ## Create a new ballot with $(num_proposals) different proposals.
 def setup( num_proposals )

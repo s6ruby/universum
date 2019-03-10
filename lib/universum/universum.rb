@@ -17,7 +17,7 @@ end  # class Msg
 class Block
   attr_reader :timestamp, :number
 
-  def initialize( timestamp: Time.now.to_i, number: 0 )
+  def initialize( timestamp: Timestamp.now, number: 0 )
     @timestamp = timestamp   # unix epoch time (in seconds since 1970)
     @number    = number      # block height (start with 0 - genesis block)
   end
