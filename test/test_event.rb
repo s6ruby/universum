@@ -9,9 +9,12 @@ require 'helper'
 
 
 class TestEvent < MiniTest::Test
+  include Safe
 
-  BetPlaced = Event.new( :id, :user, :cap, :amount )
-  Roll      = Event.new( :id, :rolled )
+  ## Event.new( :BetPlaced, :id, :user, :cap, :amount )
+  ## Event.new( :Roll, :id, :rolled )
+  event :BetPlaced, :id, :user, :cap, :amount
+  event :Roll, :id, :rolled
 
 
 def test_bet_placed

@@ -4,7 +4,7 @@
 ## auto-create/builds struct-like class.
 ##
 ## Example:
-##   Roll = Event.new( :id, :rolled )
+##  Event.new( :Roll, :id, :rolled )
 ##     auto-creates/builds:
 ##
 ##   class Event; end
@@ -23,6 +23,7 @@
 ##   pp roll.rolled                  #=> 2345
 
 
+module Safe
 ## base class for events
 class Event
   ## return a new Struct-like read-only class
@@ -30,7 +31,7 @@ class Event
   ###################
   ##  meta-programming "macro" - build class (on the fly)
   ##
-  def self.build_class( *fields )
+  def self.build_class( class_name, *fields )
     klass = Class.new( Event ) do
       define_method( :initialize ) do |*args|
         fields.zip( args ).each do |field, arg|
@@ -51,6 +52,10 @@ class Event
       old_new( *args )
     end
 
+    ## note: use Safe (module) and NOT Object for namespacing
+    ##   use include Safe to make all structs global
+    Safe.const_set( class_name, klass )   ## returns klass (plus sets global constant class name)
+
     klass
   end
 
@@ -59,3 +64,21 @@ class Event
     alias_method :new,     :build_class    # replace original version with create
   end
 end  # class Event
+
+module SafeHelper
+  def event( class_name, *args )
+    ########################################
+    # note: lets you use:
+    #   enum :Color, :red, :green, :blue
+    #    -or-
+    #   enum :Color, [:red, :green, :blue]
+    if args[0].is_a?( Array )
+      fields = args[0]
+    else
+      fields = args
+    end
+
+    Event.new( class_name, *fields )
+  end
+end # module SafeHelper
+end # module Safe

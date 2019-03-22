@@ -18,8 +18,8 @@ Hoe.spec 'universum' do
   self.history_file = 'CHANGELOG.md'
 
   self.extra_deps = [
-    ['safestruct',  '>=1.2.0'],
-    ['units-time',  '>=1.0.2'],
+    ['safestruct',  '>=1.2.2'],
+    ['units-time',  '>=1.1.0'],
     ['units-money', '>=0.1.1'],
   ]
 

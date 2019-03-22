@@ -1,8 +1,11 @@
 # encoding: utf-8
 
-###
-# e.g. use Address(0) 
 
+## note: put all "global" Kernel converter methods into Kernel module
+module Kernel
+
+###
+# e.g. use Address(0)
 def Address( arg )
   if arg == 0 || arg == '0x0' || arg == '0x0000'
     '0x0000'   ## note: return a string for now and NOT (typed) Address.zero
@@ -16,11 +19,4 @@ def Address( arg )
   end
 end
 
-
-
-###
-## todo - add a global method_missing handler for (auto-)adding converters for Structs - why? why not?
-##  e.g. how to auto-create   Vote(0) for Vote.zero  or Bet(0) for Bet.zero and so on - why? why not?
-##
-##   def Vote( arg ) Vote.zero; end  
-
+end # module Kernel

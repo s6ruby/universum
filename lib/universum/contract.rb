@@ -105,13 +105,22 @@ class Contract
   # def receive    ## @payable default fallback - use different name - why? why not? (e.g. handle/process/etc.)
   # end
 
-  def assert( condition )
+
+  ####
+  ###  todo/fix: use module Assertions  and include in contract class
+  def assert( condition, message=nil )
+    ## note: use message to avoid conflict with msg helper/builtin in contract!!!
     if condition == true
       ## do nothing
     else
-      raise 'Contract Assertion Failed; Contract Halted (Stopped)'
+      if message
+        raise "Contract Assertion Failed; Contract Halted (Stopped): #{message}"
+      else
+        raise 'Contract Assertion Failed; Contract Halted (Stopped)'
+      end
     end
   end
+
 
 
   def log( event ) Universum.log( event ); end
