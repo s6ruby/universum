@@ -69,9 +69,9 @@ module SafeHelper
   def event( class_name, *args )
     ########################################
     # note: lets you use:
-    #   enum :Color, :red, :green, :blue
+    #   event :Roll, :id, :rolled
     #    -or-
-    #   enum :Color, [:red, :green, :blue]
+    #   event :Roll, [:id, :rolled]
     if args[0].is_a?( Array )
       fields = args[0]
     else
