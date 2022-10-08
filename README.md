@@ -18,15 +18,7 @@ New to Universum? See the [Universum (World Computer) White Paper](https://githu
 
 [**ruby-to-solidity**](ruby-to-solidity) - (secure) ruby to solidity (source-to-source) cross-compiler cheat sheet / white paper
 
-
-
-
-
-
-
-
-
-
+[**ruby-to-michelson**](ruby-to-michelson) - (secure) ruby to liquidity w/ reasonml syntax / michelson (source-to-source) cross-compiler cheat sheet / white paper
 
 
 

@@ -1,0 +1,9 @@
+CHANGELOG.md
+Manifest.txt
+README.md
+Rakefile
+lib/michelson.rb
+lib/michelson/michelson.rb
+lib/michelson/version.rb
+test/helper.rb
+test/test_counter.rb
