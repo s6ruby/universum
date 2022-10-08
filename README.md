@@ -13,6 +13,15 @@ New to Universum? See the [Universum (World Computer) White Paper](https://githu
 
 
 
+## (Secure) Ruby Source-to-Source (Blockchain) Contract Converter
+
+
+[**ruby-to-solidity**](ruby-to-solidity) - (secure) ruby to solidity (source-to-source) cross-compiler cheat sheet / white paper
+
+
+
+
+
 
 
 
